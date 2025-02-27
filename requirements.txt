@@ -3,6 +3,5 @@ gunicorn
 uvicorn
 requests
 flask_cors  
-speech_recognition
 pyttsx3
 requests
