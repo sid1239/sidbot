@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import random
 import json
-import speech_recognition as sr
 import pyttsx3
 import requests
 
@@ -78,20 +77,6 @@ def get_bot_response(user_message, user_id):
         return f"Playing your song 🎵: {youtube_url}"
 
     return "I'm here to chat! What’s on your mind? 🤖"
-
-# Speech-to-Text (Voice Recognition)
-def recognize_speech():
-    recognizer = sr.Recognizer()
-    with sr.Microphone() as source:
-        print("Listening...")
-        recognizer.adjust_for_ambient_noise(source)
-        audio = recognizer.listen(source)
-    try:
-        return recognizer.recognize_google(audio)
-    except sr.UnknownValueError:
-        return "Sorry, I couldn't understand that."
-    except sr.RequestError:
-        return "Could not request results. Please try again."
 
 # Text-to-Speech (Chatbot replies)
 def speak(text):
