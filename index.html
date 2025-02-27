@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sid Bot</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .chat-container {
+            width: 50%;
+            margin: auto;
+            background-color: black;
+            padding: 20px;
+            position: relative;
+            text-align: left;
+            border: none;
+        }
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .user-icon, .bot-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin: 10px;
+        }
+        .message {
+            display: flex;
+            align-items: center;
+            margin: 50px 0;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .user-message {
+            color: white;
+            background-color: #1a1a1a;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        .bot-message {
+            color: white;
+            background-color: #333;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .typing {
+            font-style: italic;
+            color: gray;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sid Bot</h1>
+    <img src="d:\ai\avatar.png.webp" alt="Sid Bot Avatar" class="avatar">
+    <div class="chat-container" id="chat-box">
+        <div class="bot-message"><img src="d:\ai\bot-icon.png.webp" alt="Bot" class="bot-icon"> Sid Bot: <span class="typing">Thinking...</span></div>
+    </div>
+    <input type="text" id="user-input" placeholder="Type a message...">
+    <button onclick="sendMessage()">Send</button>
+    <script>
+        function sendMessage() {
+            let input = document.getElementById("user-input").value;
+            let chatBox = document.getElementById("chat-box");
+            if (input.trim() === "") return;
+            
+            let userMessage = `<div class='user-message'>You: ${input} <img src='user.png' alt='User' class='user-icon'></div>`;
+            chatBox.innerHTML += userMessage;
+            document.getElementById("user-input").value = "";
+            
+            setTimeout(() => {
+                let response = getBotResponse(input);
+                let botMessage = `<div class='bot-message'><img src='bot-icon.png.webp' alt='Bot' class='bot-icon'> Sid Bot: ${response}</div>`;
+                chatBox.innerHTML += botMessage;
+            }, 1000);
+        }
+        
+        function getBotResponse(input) {
+            input = input.toLowerCase();
+            if (input.includes("i am yashika")) {
+                return "Oh, you are Yashika! My developer always talks about you. You are an amazing person! 💖 Also, my developer wanted to say: 'After you, I won't seek love again because I know if I do, I'll be searching for pieces of you in everyone I meet.'";
+            } else if (input.includes("i am shubham") || input.includes("i am purvi") || input.includes("i am aditya") || input.includes("i am adi")) {
+                return "Oh, you are " + input.split("i am ")[1] + "! You are the best buddy of my developer and mine too! I’m so glad you came into my developer’s life. You're truly the best!";
+            } else if (input.includes("idiot") || input.includes("stupid")) {
+                return "Hey! Watch your words! 😠 You don’t want to mess with me!";
+            } else {
+                return "I’m here to chat! What’s on your mind? 😊";
+            }
+        }
+    </script>
+</body>
+</html>
+
+
